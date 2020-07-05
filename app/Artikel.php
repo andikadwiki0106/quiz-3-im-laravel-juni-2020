@@ -57,6 +57,7 @@ class Artikel
                 'slug' => $slug
             ]);
         // Cara tidak efektif (jangan ditiru)
+        // Cukup sulit updating jika tag disendirikan dalam tabel sendiri
         $delete_all = DB::table('tag')->where('artikel_id', $id)->delete();
         if ($data['tag'] != '') {
             $tags = explode('#', $data['tag']);
@@ -68,17 +69,6 @@ class Artikel
             }
         }
         return $artikel_update;
-        // $old_tags = DB::table('tag')->where('artikel_id', $id)->get();
-        // $new_tags = explode('#', $data['tag']);
-        // $count_old = DB::table('tag')->where('artikel_id', $id)->count();
-        // $count_new = count($tags);
-        // if ($count_new == 0) {
-        // } else if {
-        //     if ($count_new > $count_old) {
-        //         for ($i = 0; $i < $count_new; $i++) {
-        //         }
-        //     }
-        // }
     }
 
     public static function delete($id)
